@@ -1,6 +1,6 @@
 import unittest
 
-from envfile import emit_env, parse_env
+from envfile import emit_env, overlay_env, parse_env
 
 
 class EnvfileTest(unittest.TestCase):
@@ -10,6 +10,12 @@ class EnvfileTest(unittest.TestCase):
         self.assertEqual(got, {"NAME": "Ada", "EMPTY": "", "TITLE": "a b"})
         again = parse_env(emit_env(got))
         self.assertEqual(again, got)
+
+    def test_overlay(self) -> None:
+        base = {"NAME": "Ada", "CITY": "North"}
+        got = overlay_env(base, {"CITY": "South"})
+        self.assertEqual(got, {"NAME": "Ada", "CITY": "South"})
+        self.assertEqual(base["CITY"], "North")
 
     def test_reject_bad_key(self) -> None:
         with self.assertRaises(ValueError):
