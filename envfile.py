@@ -20,6 +20,15 @@ def parse_env(text: str) -> dict[str, str]:
     return out
 
 
+def overlay_env(base: dict[str, str], extra: dict[str, str]) -> dict[str, str]:
+    merged = dict(base)
+    merged.update(extra)
+    for key in merged:
+        if not key or any(ch.isspace() for ch in key):
+            raise ValueError(f"键不合法: {key}")
+    return merged
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
