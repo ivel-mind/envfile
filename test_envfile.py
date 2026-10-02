@@ -1,6 +1,6 @@
 import unittest
 
-from envfile import emit_env, overlay_env, parse_env
+from envfile import changed_keys, emit_env, overlay_env, parse_env
 
 
 class EnvfileTest(unittest.TestCase):
@@ -16,6 +16,11 @@ class EnvfileTest(unittest.TestCase):
         got = overlay_env(base, {"CITY": "South"})
         self.assertEqual(got, {"NAME": "Ada", "CITY": "South"})
         self.assertEqual(base["CITY"], "North")
+
+    def test_changed_keys(self) -> None:
+        before = {"NAME": "Ada", "CITY": "North"}
+        after = {"NAME": "Ada", "CITY": "South", "ROLE": "dev"}
+        self.assertEqual(changed_keys(before, after), ["CITY", "ROLE"])
 
     def test_reject_bad_key(self) -> None:
         with self.assertRaises(ValueError):
