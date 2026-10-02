@@ -29,6 +29,16 @@ def overlay_env(base: dict[str, str], extra: dict[str, str]) -> dict[str, str]:
     return merged
 
 
+def changed_keys(before: dict[str, str], after: dict[str, str]) -> list[str]:
+    seen: list[str] = []
+    for key in list(before) + [key for key in after if key not in before]:
+        if key in seen:
+            continue
+        if before.get(key) != after.get(key):
+            seen.append(key)
+    return seen
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
