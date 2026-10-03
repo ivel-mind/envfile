@@ -39,6 +39,11 @@ def changed_keys(before: dict[str, str], after: dict[str, str]) -> list[str]:
     return seen
 
 
+def without_keys(data: dict[str, str], keys: list[str]) -> dict[str, str]:
+    skip = set(keys)
+    return {key: value for key, value in data.items() if key not in skip}
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
