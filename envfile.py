@@ -44,6 +44,10 @@ def without_keys(data: dict[str, str], keys: list[str]) -> dict[str, str]:
     return {key: value for key, value in data.items() if key not in skip}
 
 
+def shared_keys(left: dict[str, str], right: dict[str, str]) -> list[str]:
+    return [key for key in left if key in right]
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
