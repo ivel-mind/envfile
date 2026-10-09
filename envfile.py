@@ -48,6 +48,10 @@ def shared_keys(left: dict[str, str], right: dict[str, str]) -> list[str]:
     return [key for key in left if key in right]
 
 
+def only_left(left: dict[str, str], right: dict[str, str]) -> list[str]:
+    return [key for key in left if key not in right]
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
