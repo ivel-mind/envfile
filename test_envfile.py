@@ -1,6 +1,6 @@
 import unittest
 
-from envfile import changed_keys, emit_env, overlay_env, parse_env, shared_keys, without_keys
+from envfile import changed_keys, emit_env, only_left, overlay_env, parse_env, shared_keys, without_keys
 
 
 class EnvfileTest(unittest.TestCase):
@@ -23,6 +23,7 @@ class EnvfileTest(unittest.TestCase):
         self.assertEqual(changed_keys(before, after), ["CITY", "ROLE"])
         self.assertEqual(without_keys(before, ["CITY"]), {"NAME": "Ada"})
         self.assertEqual(shared_keys(before, after), ["NAME", "CITY"])
+        self.assertEqual(only_left(before, {"NAME": "Ada"}), ["CITY"])
         self.assertEqual(before["CITY"], "North")
 
     def test_reject_bad_key(self) -> None:
