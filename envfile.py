@@ -56,6 +56,10 @@ def only_right(left: dict[str, str], right: dict[str, str]) -> list[str]:
     return [key for key in right if key not in left]
 
 
+def blank_keys(data: dict[str, str]) -> list[str]:
+    return [key for key, value in data.items() if value == ""]
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
