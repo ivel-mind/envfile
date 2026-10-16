@@ -60,6 +60,10 @@ def blank_keys(data: dict[str, str]) -> list[str]:
     return [key for key, value in data.items() if value == ""]
 
 
+def filled_keys(data: dict[str, str]) -> list[str]:
+    return [key for key, value in data.items() if value != ""]
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
