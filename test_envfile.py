@@ -1,6 +1,6 @@
 import unittest
 
-from envfile import blank_keys, changed_keys, emit_env, filled_keys, only_left, only_right, overlay_env, parse_env, shared_keys, without_keys
+from envfile import blank_keys, changed_keys, emit_env, filled_keys, key_count, only_left, only_right, overlay_env, parse_env, shared_keys, without_keys
 
 
 class EnvfileTest(unittest.TestCase):
@@ -27,6 +27,7 @@ class EnvfileTest(unittest.TestCase):
         self.assertEqual(only_right(before, after), ["ROLE"])
         self.assertEqual(blank_keys({"NAME": "Ada", "EMPTY": ""}), ["EMPTY"])
         self.assertEqual(filled_keys({"NAME": "Ada", "EMPTY": ""}), ["NAME"])
+        self.assertEqual(key_count({"NAME": "Ada", "EMPTY": ""}), 2)
         self.assertEqual(before["CITY"], "North")
 
     def test_reject_bad_key(self) -> None:
