@@ -64,6 +64,10 @@ def filled_keys(data: dict[str, str]) -> list[str]:
     return [key for key, value in data.items() if value != ""]
 
 
+def key_count(data: dict[str, str]) -> int:
+    return len(data)
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
