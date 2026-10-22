@@ -68,6 +68,10 @@ def key_count(data: dict[str, str]) -> int:
     return len(data)
 
 
+def blank_count(data: dict[str, str]) -> int:
+    return len(blank_keys(data))
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
