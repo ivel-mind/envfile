@@ -72,6 +72,10 @@ def blank_count(data: dict[str, str]) -> int:
     return len(blank_keys(data))
 
 
+def filled_count(data: dict[str, str]) -> int:
+    return len(filled_keys(data))
+
+
 def emit_env(data: dict[str, str]) -> str:
     lines = []
     for key, value in data.items():
