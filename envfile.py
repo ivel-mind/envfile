@@ -96,3 +96,6 @@ def _quote(value: str) -> str:
         escaped = value.replace("\\", "\\\\").replace('"', '\\"')
         return f'"{escaped}"'
     return value
+
+def shared_count(left: dict[str, str], right: dict[str, str]) -> int:
+    return len(shared_keys(left, right))
