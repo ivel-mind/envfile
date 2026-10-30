@@ -1,6 +1,6 @@
 import unittest
 
-from envfile import blank_count, blank_keys, changed_keys, emit_env, filled_count, filled_keys, key_count, only_left, only_right, overlay_env, parse_env, shared_keys, without_keys, shared_count
+from envfile import blank_count, blank_keys, changed_keys, emit_env, filled_count, filled_keys, key_count, only_left, only_right, overlay_env, parse_env, shared_keys, without_keys, shared_count, only_left_count
 
 
 class EnvfileTest(unittest.TestCase):
@@ -38,6 +38,8 @@ class EnvfileTest(unittest.TestCase):
 
 
         self.assertEqual(shared_count({"A": "1"}, {"A": "2", "B": "3"}), 1)
+
+        self.assertEqual(only_left_count({"A": "1", "B": "2"}, {"A": "9"}), 1)
 
 if __name__ == "__main__":
     unittest.main()
