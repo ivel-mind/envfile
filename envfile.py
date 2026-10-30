@@ -99,3 +99,6 @@ def _quote(value: str) -> str:
 
 def shared_count(left: dict[str, str], right: dict[str, str]) -> int:
     return len(shared_keys(left, right))
+
+def only_left_count(left: dict[str, str], right: dict[str, str]) -> int:
+    return len(only_left(left, right))
